@@ -1,23 +1,43 @@
-import React from 'react';
-import { Button } from './ui/button';
+"use client";
 
-const SuccessComponent = () => {
-    return (
-        <div className="flex flex-col items-center justify-center w-[747px] h-[461px] pt-[7.19rem] pb-[6.25rem] max-md:min-h-screen max-md:w-full max-md:h-auto max-sm:pt-8 max-sm:pb-8 max-sm:px-4 sm:pt-12 sm:pb-12 sm:px-6">
-            <div className="flex flex-col items-center justify-center gap-[0.92rem] max-sm:gap-4 max-sm:w-full max-sm:max-w-[90%] sm:gap-6 sm:max-w-[600px]">
-                <h1 className="text-black text-[42px] font-semibold max-sm:text-3xl sm:text-4xl">
-                    Success
-                </h1>
-                <p className="text-6 text-secondary font-medium max-sm:text-sm max-sm:text-center sm:text-base sm:text-center">
-                    Your account is verified successfully
-                </p>
-            </div>
+import Link from "next/link";
+import React from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog"; // Adjust import path based on your Shadcn setup
 
-            <Button className="bg-primary w-[468px] h-[3.9rem] mt-[5.52rem] text-white rounded-[9.04px] text-xl max-sm:w-full max-sm:max-w-[90%] max-sm:h-12 max-sm:mt-8 max-sm:text-base sm:w-[400px] sm:h-[3.5rem] sm:mt-10 sm:text-lg">
-                Log in
-            </Button>
+interface SuccessComponentProps {
+  message: string;
+}
+
+const SuccessComponent: React.FC<SuccessComponentProps> = ({ message }) => {
+  return (
+    <Dialog open={true} onOpenChange={() => {}}>
+      <DialogContent className="bg-white flex flex-col items-center justify-center w-full max-w-[90%] md:max-w-[60%] sm:max-w-[747px] min-h-[50vh] sm:min-h-[461px] xl:max-w-[747px] lg:max-w-[30%] p-4 sm:p-6 md:p-8 lg:p-12 rounded-lg gap-4 sm:gap-6 md:gap-8">
+        <DialogHeader className="flex w-full flex-col items-center justify-center gap-2 sm:gap-3 md:gap-4">
+          <DialogTitle className="text-black text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-semibold text-center">
+            Success
+          </DialogTitle>
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-500 font-medium text-center max-w-[90%] sm:max-w-[80%]">
+            {message}
+            {/* Removed static text "this account is verified successfully" assuming it’s part of message prop */}
+          </p>
+        </DialogHeader>
+
+        <div className="w-full flex items-center justify-center mt-6 sm:mt-8 md:mt-10 lg:mt-[88.31px]">
+          <Link
+            href="/login"
+            className="bg-[#2B2B2B] text-white w-full max-w-[90%] sm:max-w-[468px] h-10 sm:h-12 md:h-14 lg:h-[3.9rem] rounded-[9.04px] text-sm sm:text-base md:text-lg lg:text-xl font-medium flex items-center justify-center hover:bg-black/90 transition-colors"
+          >
+            Log in
+          </Link>
         </div>
-    );
+      </DialogContent>
+    </Dialog>
+  );
 };
 
 export default SuccessComponent;
