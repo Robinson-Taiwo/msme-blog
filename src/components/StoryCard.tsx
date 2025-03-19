@@ -66,6 +66,7 @@ export function StoryCard({ blogId,  category, date, title, content, author, sta
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleComment = async () => {
     if (!token) {
       alert("Please log in to comment.");
@@ -142,7 +143,7 @@ export function StoryCard({ blogId,  category, date, title, content, author, sta
           </div>
           <div className="flex items-center gap-1">
             <Image src={like} alt="Likes icon" className="xl:h-6 xl:w-6 lg:h-5 lg:w-5" onClick={handleLike} />
-            <span className="xl:font-medium xl:text-5 xl:text-[#2C2C2C] lg:font-medium lg:text-sm lg:text-gray-700">{stats.likes}</span>
+            <span className="xl:font-medium xl:text-5 xl:text-[#2C2C2C] lg:font-medium lg:text-sm lg:text-gray-700">{likes}</span>
           </div>
         </div>
       </div>
