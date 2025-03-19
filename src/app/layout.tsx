@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import 'react-quill/dist/quill.snow.css';
 import { Toaster } from "@/components/ui/sonner"
 
 import { Geist, Geist_Mono } from "next/font/google";
