@@ -1,3 +1,5 @@
+
+
 "use client";
 
 import { useEffect, useRef, forwardRef, useImperativeHandle } from "react";
@@ -9,7 +11,6 @@ import { Toolbar } from "./toolbar";
 import List from "quill/formats/list";
 Quill.register("formats/list", List);
 
-// Wrap Editor with forwardRef to accept a ref from EditorPage
 const Editor = forwardRef((props, ref) => {
   const quillRef = useRef<HTMLDivElement>(null);
   const editorInstance = useRef<Quill | null>(null);
@@ -26,7 +27,6 @@ const Editor = forwardRef((props, ref) => {
       });
     }
 
-    // Cleanup on unmount
     return () => {
       if (editorInstance.current) {
         editorInstance.current.off("text-change");
@@ -34,7 +34,6 @@ const Editor = forwardRef((props, ref) => {
     };
   }, []);
 
-  // Expose getContent method via the ref
   useImperativeHandle(ref, () => ({
     getContent: () => {
       return editorInstance.current ? editorInstance.current.root.innerHTML : "";
@@ -50,6 +49,9 @@ const Editor = forwardRef((props, ref) => {
       quill.focus();
       return;
     }
+
+    // Ensure this only runs in the browser
+    if (typeof window === "undefined") return;
 
     const input = document.createElement("input");
     input.setAttribute("type", "file");
@@ -136,7 +138,9 @@ const Editor = forwardRef((props, ref) => {
   );
 });
 
-// Set displayName to satisfy ESLint's react/display-name rule
 Editor.displayName = "Editor";
 
 export default Editor;
+
+
+
