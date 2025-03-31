@@ -40,6 +40,7 @@ const Editor = forwardRef((props, ref) => {
     },
   }));
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleImageUpload = (isGallery: boolean = false) => {
     const quill = editorInstance.current;
     if (!quill) return;
@@ -53,34 +54,34 @@ const Editor = forwardRef((props, ref) => {
     // Ensure this only runs in the browser
     if (typeof window === "undefined") return;
 
-    const input = document.createElement("input");
-    input.setAttribute("type", "file");
-    input.setAttribute("accept", "image/*");
-    input.setAttribute("multiple", isGallery ? "true" : "false");
-    input.click();
+    // const input = document.createElement("input");
+    // input.setAttribute("type", "file");
+    // input.setAttribute("accept", "image/*");
+    // input.setAttribute("multiple", isGallery ? "true" : "false");
+    // input.click();
 
-    input.onchange = () => {
-      const files = input.files;
-      if (!files) return;
+    // input.onchange = () => {
+    //   const files = input.files;
+    //   if (!files) return;
 
-      Array.from(files).forEach((file) => {
-        const MAX_SIZE = 5 * 1024 * 1024;
-        if (file.size > MAX_SIZE) {
-          alert(`File "${file.name}" is too large. Maximum size is 5MB.`);
-          return;
-        }
+    //   Array.from(files).forEach((file) => {
+    //     const MAX_SIZE = 5 * 1024 * 1024;
+    //     if (file.size > MAX_SIZE) {
+    //       alert(`File "${file.name}" is too large. Maximum size is 5MB.`);
+    //       return;
+    //     }
 
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          const base64Image = e.target?.result as string;
-          if (base64Image) {
-            quill.insertEmbed(range.index, "image", base64Image);
-            quill.setSelection(range.index + 1, 0);
-          }
-        };
-        reader.readAsDataURL(file);
-      });
-    };
+    //     const reader = new FileReader();
+    //     reader.onload = (e) => {
+    //       const base64Image = e.target?.result as string;
+    //       if (base64Image) {
+    //         quill.insertEmbed(range.index, "image", base64Image);
+    //         quill.setSelection(range.index + 1, 0);
+    //       }
+    //     };
+    //     reader.readAsDataURL(file);
+    //   });
+    // };
   };
 
   const handleFormatText = (format: string) => {
